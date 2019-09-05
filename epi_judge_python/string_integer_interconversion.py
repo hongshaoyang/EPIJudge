@@ -1,15 +1,39 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
+import string
 
+# 6.1, interconvert strings and integers
+# SOLUTION
+    # build up each digit one by one
+    # use chr() and ord() to convert from int to string
+    # use string.digits to convert from string to int
 
 def int_to_string(x):
-    # TODO - you fill in here.
-    return ''
+    if x == 0:
+        return "0"
+    
+    is_negative, x = (True, -x) if x < 0 else (False, x)
+    lst = []
+    while x:
+        # use chr and ord 
+        lst.insert(0, chr(ord("0") + x%10))
+        x //= 10
+    
+    # append negative sign if needed
+    if is_negative:
+        lst.insert(0, "-")
+    return "".join(lst) 
 
 
 def string_to_int(s):
-    # TODO - you fill in here.
-    return 0
+    # use string.digits.index(c)
+    res, pwr = 0, 0
+    for i in range(len(s))[::-1]:
+        if i==0 and s[i]=="-":
+            return -res
+        res += string.digits.index(s[i]) * 10 ** pwr
+        pwr += 1
+    return res
 
 
 def wrapper(x, s):
