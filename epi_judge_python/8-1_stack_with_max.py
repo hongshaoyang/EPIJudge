@@ -1,22 +1,29 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
+from collections import namedtuple
 
-
+# 8.1 Implement a stack with Max api
+# SOLUTION
+    # use additional O(N) storage to track max from bottom of stack up to current element 
 class Stack:
+    ElementWithMax = namedtuple("ElementWithMax", ('x', 'max'))
+
+    stack = []
     def empty(self):
-        # TODO - you fill in here.
-        return True
+        return len(self.stack) == 0
 
     def max(self):
-        # TODO - you fill in here.
-        return 0
+        return self.stack[-1].max
 
     def pop(self):
-        # TODO - you fill in here.
-        return 0
+        return self.stack.pop().x
 
     def push(self, x):
-        # TODO - you fill in here.
+        if not self.stack:
+            self.stack.append(self.ElementWithMax(x, x))
+        else:
+            prev_max = self.stack[-1].max
+            self.stack.append(self.ElementWithMax(x, max(prev_max, x)))
         return
 
 
