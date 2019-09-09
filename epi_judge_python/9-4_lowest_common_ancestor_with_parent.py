@@ -4,11 +4,30 @@ from test_framework import generic_test
 from test_framework.binary_tree_utils import must_find_node
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
+from binary_tree_with_parent_prototype import BinaryTreeNode
 
 
-def lca(node0, node1):
-    # TODO - you fill in here.
-    return None
+# 9.4 Compute the LCA when nodes have parent pointers
+def lca(node0: BinaryTreeNode, node1: BinaryTreeNode):
+    n0_path, n1_path = [], []
+    curr = node0
+    while curr:
+        n0_path.append(curr)
+        curr = curr.parent
+    curr = node1
+    while curr:
+        n1_path.append(curr)
+        curr = curr.parent
+
+    n0_path.reverse()
+    n1_path.reverse()
+
+    i = 0
+    while i < min(len(n0_path), len(n1_path)) and n0_path[i] is n1_path[i]:
+        i +=1 
+    return n0_path[i-1]
+
+
 
 
 @enable_executor_hook
