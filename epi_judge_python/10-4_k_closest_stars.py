@@ -1,5 +1,7 @@
 import functools
 import math
+import heapq
+from typing import List
 
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
@@ -25,10 +27,17 @@ class Star:
     def __eq__(self, rhs):
         return math.isclose(self.distance, rhs.distance)
 
+def find_closest_k_stars(stars: List[Star], k):
+    max_heap = []
+    for star in stars:
+        # As python has only min-heap, insert tuple (negative of distance, star)
+        # to sort in reversed distance order.
+        heapq.heappush(max_heap, (-star.distance, star))
+        if len(max_heap) == k+1:
+            heapq.heappop(max_heap)
 
-def find_closest_k_stars(stars, k):
-    # TODO - you fill in here.
-    return []
+    return [ele[1] for ele in max_heap]
+
 
 
 def comp(expected_output, output):
