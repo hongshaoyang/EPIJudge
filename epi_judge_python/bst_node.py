@@ -2,7 +2,7 @@
 from test_framework.binary_tree_utils import binary_tree_to_string, equal_binary_trees
 
 
-
+# basic BST node - nothing else!
 class BstNode:
     def __init__(self, data=None, left=None, right=None):
         self.data, self.left, self.right = data, left, right
