@@ -4,7 +4,7 @@ from test_framework import generic_test
 def search_first_of_k(A, k):
     lo, hi, res = 0, len(A) - 1, -1
     while lo <= hi:
-        mid = (lo + hi)//2
+        mid = (lo+hi) // 2
         if A[mid] > k:
             hi = mid - 1
         elif A[mid] == k:
