@@ -2,8 +2,16 @@ from test_framework import generic_test
 
 
 def find_first_greater_than_k(tree, k):
-    # TODO - you fill in here.
-    return None
+    subtree, root = tree, None
+    while subtree:
+        if subtree.data > k:
+            subtree, root = subtree.left, subtree
+        else: # subtree.data <= k
+            subtree = subtree.right
+    return root
+
+
+    # return None
 
 
 def find_first_greater_than_k_wrapper(tree, k):
