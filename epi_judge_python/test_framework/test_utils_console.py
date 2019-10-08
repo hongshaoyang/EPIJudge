@@ -106,7 +106,7 @@ def print_post_run_stats(tests_passed, total_tests, durations):
     if durations:
         avg_median = avg_and_median_from_durations(durations)
         print(
-            'Average running time: {}\n'
+            'Mean   running time: {}\n'
             'Median running time:  {}\n'.format(
                 duration_to_string(avg_median[0]),
                 duration_to_string(avg_median[1])),
