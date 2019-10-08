@@ -2,8 +2,14 @@ from test_framework import generic_test
 
 
 def buy_and_sell_stock_once(prices):
-    # TODO - you fill in here.
-    return 0.0
+    # solution - track min price so far and max profit so far
+    curr_min_px, max_profit = float("Inf"), 0
+    for p in prices:
+        if p < curr_min_px:
+            curr_min_px = p
+        if p - curr_min_px > max_profit:
+            max_profit = p - curr_min_px
+    return max_profit
 
 
 if __name__ == '__main__':
